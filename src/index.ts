@@ -10,7 +10,7 @@
 
 export interface Env {
 	// Example binding to KV. Learn more at https://developers.cloudflare.com/workers/runtime-apis/kv/
-	MY_KV_NAMESPACE: "";
+	API_KEY: string;
 	//
 	// Example binding to Durable Object. Learn more at https://developers.cloudflare.com/workers/runtime-apis/durable-objects/
 	// MY_DURABLE_OBJECT: DurableObjectNamespace;
@@ -23,6 +23,6 @@ export default {
 	async fetch(request: Request, env: Env, ctx: ExecutionContext): Promise<Response> {
 		console.debug(env);
 		console.debug(ctx);
-		return new Response(`Hello Cloudflare from ${request.method}!`);
+		return new Response(`Hello Cloudflare ${env.API_KEY} from ${request.method}!`);
 	},
 };
