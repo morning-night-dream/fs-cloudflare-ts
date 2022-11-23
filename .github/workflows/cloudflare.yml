@@ -19,7 +19,7 @@ jobs:
         uses: cloudflare/wrangler-action@2.0.0
         with:
           apiKey: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          email: ${{ secrets.CLOUDFLARE_EMAIL }}
           secrets: |
             API_KEY
         env:
