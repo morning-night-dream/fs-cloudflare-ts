@@ -23,6 +23,6 @@ export default {
 	async fetch(request: Request, env: Env, ctx: ExecutionContext): Promise<Response> {
 		console.debug(env);
 		console.debug(ctx);
-		return new Response(`Hello World from ${request.method}!`);
+		return new Response(`Hello Cloudflare from ${request.method}!`);
 	},
 };
