@@ -22,6 +22,8 @@ jobs:
           secrets: |
             API_KEY
             VERIFICATION_TOKEN
+            CORE_APP_ENDPOINT_V1_ARTICLE_SHARE
         env:
           API_KEY: ${{ secrets.API_KEY }}
           VERIFICATION_TOKEN: ${{ secrets.VERIFICATION_TOKEN }}
+          CORE_APP_ENDPOINT_V1_ARTICLE_SHARE: ${{ secrets.CORE_APP_ENDPOINT_V1_ARTICLE_SHARE}}
