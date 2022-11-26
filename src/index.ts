@@ -6,7 +6,7 @@ export type Env = {
 };
 
 export default {
-	async fetch(request: Request, env: Env, ctx: ExecutionContext): Promise<Response> {
+	async handle(request: Request, env: Env, ctx: ExecutionContext): Promise<Response> {
 		console.debug(JSON.stringify(ctx));
 		// @ref https://developers.cloudflare.com/workers/examples/read-post/
 		const req = await request.json();
