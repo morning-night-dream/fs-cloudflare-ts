@@ -33,6 +33,12 @@ export default {
 		const req = await request.json();
 		const event: SlackChallengeRequest = JSON.parse(JSON.stringify(req));
 		console.info(event.challenge);
-		return new Response(event.challenge);
+		const init = {
+			headers: {
+				'content-type': 'text'
+			},
+			body: event.challenge
+		}
+		return new Response(JSON.stringify(init));
 	},
 };
