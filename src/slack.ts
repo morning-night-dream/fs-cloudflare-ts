@@ -27,7 +27,11 @@ export const callback = (event: SlackEvent) => {
 	try {
 		const url = event.event.text.match(pattern)?.find((s) => s);
 		console.log(url);
+
+		// TODO request core server
 	} catch (e) {
+		console.warn(e);
+		// 不要なリトライを防ぐため握りつぶす
 		return;
 	}
 };

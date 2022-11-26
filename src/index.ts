@@ -15,6 +15,8 @@ export default {
 
 		const event: SlackEvent = JSON.parse(JSON.stringify(req));
 
+		console.log(`received event type: ${event.type}, sub type: ${event.event.subtype}`);
+
 		if (event.type === "url_verification") {
 			return new Response(JSON.stringify(event.challenge));
 		}
