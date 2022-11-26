@@ -23,6 +23,7 @@ export default {
 	async fetch(request: Request, env: Env, ctx: ExecutionContext): Promise<Response> {
 		console.debug(JSON.stringify(env));
 		console.debug(JSON.stringify(ctx));
+		console.debug(JSON.stringify(request));
 		return new Response(`Hello Cloudflare ${env.API_KEY} from ${request.method}!`);
 	},
 };
