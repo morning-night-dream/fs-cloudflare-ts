@@ -21,8 +21,8 @@ export interface Env {
 
 export default {
 	async fetch(request: Request, env: Env, ctx: ExecutionContext): Promise<Response> {
-		console.debug(env);
-		console.debug(ctx);
+		console.debug(JSON.stringify(env));
+		console.debug(JSON.stringify(ctx));
 		return new Response(`Hello Cloudflare ${env.API_KEY} from ${request.method}!`);
 	},
 };
