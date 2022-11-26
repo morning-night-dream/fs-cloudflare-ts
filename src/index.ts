@@ -29,9 +29,10 @@ export default {
 	async fetch(request: Request, env: Env, ctx: ExecutionContext): Promise<Response> {
 		console.debug(JSON.stringify(env));
 		console.debug(JSON.stringify(ctx));
+		// @ref https://developers.cloudflare.com/workers/examples/read-post/
 		const req = await request.json();
 		const event: SlackChallengeRequest = JSON.parse(JSON.stringify(req));
 		console.info(event.challenge);
-		return new Response(`Hello Cloudflare ${env.API_KEY} from ${request.method}!`);
+		return new Response(event.challenge);
 	},
 };
