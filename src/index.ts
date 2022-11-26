@@ -19,12 +19,19 @@ export interface Env {
 	// MY_BUCKET: R2Bucket;
 }
 
+export interface SlackChallengeRequest {
+	token: string;
+	challenge: string;
+	type: string;
+}
+
 export default {
 	async fetch(request: Request, env: Env, ctx: ExecutionContext): Promise<Response> {
 		console.debug(JSON.stringify(env));
 		console.debug(JSON.stringify(ctx));
 		const req = await request.json();
-		console.info(JSON.stringify(req));
+		const event: SlackChallengeRequest = JSON.parse(JSON.stringify(req));
+		console.info(event.challenge);
 		return new Response(`Hello Cloudflare ${env.API_KEY} from ${request.method}!`);
 	},
 };
