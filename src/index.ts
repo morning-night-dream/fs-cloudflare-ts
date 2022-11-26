@@ -1,4 +1,4 @@
-import { SlackEvent } from "./slack";
+import { callback, SlackEvent } from "./slack";
 
 export type Env = {
 	API_KEY: string;
@@ -19,11 +19,12 @@ export default {
 			return new Response(JSON.stringify(event.challenge));
 		}
 
+		if (event.type === "event_callback" && event.event.subtype === "message_changed") {
+			return new Response(JSON.stringify(""));
+		}
+
 		if (event.type === "event_callback") {
-			console.log(event.type);
-			const pattern = /http(.*):\/\/([a-zA-Z0-9/\-\_\.]*)/;
-			const url = event.event.text.match(pattern)?.find((s) => s);
-			console.log(url);
+			callback(event);
 		}
 
 		return new Response(JSON.stringify(""));
