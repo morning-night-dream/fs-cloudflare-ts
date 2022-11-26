@@ -1,6 +1,4 @@
 import { callback, SlackEvent } from "./slack";
-import { verifySlackRequest } from "@slack/bolt";
-import { SlackRequestVerificationOptions } from "@slack/bolt/dist/receivers/verify-request";
 
 export type Env = {
 	API_KEY: string;
