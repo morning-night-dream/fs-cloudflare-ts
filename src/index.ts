@@ -21,8 +21,8 @@ export default {
 
 		if (event.type === "event_callback") {
 			console.log(event.type);
-			const pattern = /^https?:\/\/[\w/:%#\$&\?\(\)~\.=\+\-]+$/
-			const url = event.event.text.match(pattern);
+			const pattern = /http(.*):\/\/([a-zA-Z0-9/\-\_\.]*)/;
+			const url = event.event.text.match(pattern)?.find((s) => s);
 			console.log(url);
 		}
 
