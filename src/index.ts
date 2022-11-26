@@ -2,7 +2,7 @@ import { callback, SlackEvent } from "./slack";
 
 export type Env = {
 	API_KEY: string;
-	SLACK_SIGNING_SECRET: string;
+	VERIFICATION_TOKEN: string;
 };
 
 export default {
