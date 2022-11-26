@@ -13,19 +13,6 @@ export default {
 		// @ref https://developers.cloudflare.com/workers/examples/read-post/
 		const req = await request.json();
 
-		request.headers.get("x-slack-signature");
-
-		const option: SlackRequestVerificationOptions = {
-			signingSecret: env.SLACK_SIGNING_SECRET,
-			body: "",
-			headers: {
-				"x-slack-signature": request.headers.get("x-slack-signature")!,
-				"x-slack-request-timestamp": request.headers.get("x-slack-request-timestamp")! as unknown as number,
-			},
-		};
-
-		verifySlackRequest(option);
-
 		console.log(JSON.stringify(req));
 
 		const event: SlackEvent = JSON.parse(JSON.stringify(req));
