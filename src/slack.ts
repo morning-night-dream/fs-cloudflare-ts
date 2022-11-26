@@ -36,8 +36,8 @@ export const callback = async (event: SlackEvent, endpoint: string, key: string)
 			body: JSON.stringify({ url: url }),
 			method: "POST",
 			headers: {
-				"x-api-key": key,
-				"content-type": "application/json;charset=UTF-8",
+				"X-API-KEY": key,
+				"Content-Type": "application/json",
 			},
 		};
 		const res = await fetch(endpoint, init);
