@@ -25,14 +25,24 @@ export const verify = (token1: string, token2: string) => {
 	}
 };
 
-export const callback = (event: SlackEvent) => {
+export const callback = async (event: SlackEvent, endpoint: string, key: string) => {
 	console.log(event.type);
 	const pattern = /http(.*):\/\/([a-zA-Z0-9/\-\_\.]*)/;
 	try {
 		const url = event.event.text.match(pattern)?.find((s) => s);
 		console.log(url);
 
-		// TODO request core server
+		const init = {
+			body: JSON.stringify({ url: url }),
+			method: "POST",
+			headers: {
+				"x-api-key": key,
+				"content-type": "application/json;charset=UTF-8",
+			},
+		};
+		const res = await fetch(endpoint, init);
+
+		console.debug(res);
 	} catch (e) {
 		console.warn(e);
 		// 不要なリトライを防ぐため握りつぶす

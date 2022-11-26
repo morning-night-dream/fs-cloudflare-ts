@@ -3,6 +3,7 @@ import { callback, SlackEvent, verify } from "./slack";
 export type Env = {
 	API_KEY: string;
 	VERIFICATION_TOKEN: string;
+	CORE_APP_ENDPOINT_V1_ARTICLE_SHARE: string;
 };
 
 export default {
@@ -28,7 +29,7 @@ export default {
 		}
 
 		if (event.type === "event_callback") {
-			callback(event);
+			callback(event, env.CORE_APP_ENDPOINT_V1_ARTICLE_SHARE, env.API_KEY);
 		}
 
 		return new Response(JSON.stringify(""));
