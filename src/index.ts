@@ -1,4 +1,6 @@
 import { callback, SlackEvent } from "./slack";
+import { verifySlackRequest } from "@slack/bolt";
+import { SlackRequestVerificationOptions } from "@slack/bolt/dist/receivers/verify-request";
 
 export type Env = {
 	API_KEY: string;
@@ -10,6 +12,19 @@ export default {
 		console.debug(JSON.stringify(ctx));
 		// @ref https://developers.cloudflare.com/workers/examples/read-post/
 		const req = await request.json();
+
+		request.headers.get("x-slack-signature");
+
+		const option: SlackRequestVerificationOptions = {
+			signingSecret: env.SLACK_SIGNING_SECRET,
+			body: "",
+			headers: {
+				"x-slack-signature": request.headers.get("x-slack-signature")!,
+				"x-slack-request-timestamp": request.headers.get("x-slack-request-timestamp")! as unknown as number,
+			},
+		};
+
+		verifySlackRequest(option);
 
 		console.log(JSON.stringify(req));
 

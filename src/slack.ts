@@ -19,8 +19,6 @@ export type Event = {
 	ts: number;
 };
 
-// export const verify = (header: string, body: string, secret: string) => {}
-
 export const callback = (event: SlackEvent) => {
 	console.log(event.type);
 	const pattern = /http(.*):\/\/([a-zA-Z0-9/\-\_\.]*)/;
