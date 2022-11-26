@@ -15,7 +15,7 @@ export default {
 
 		const event: SlackEvent = JSON.parse(JSON.stringify(req));
 
-		console.log(`received event type: ${event.type}, sub type: ${event.event.subtype}`);
+		console.info(`received event type: ${event.type}, sub type: ${event.event.subtype}`);
 
 		verify(event.token, env.VERIFICATION_TOKEN);
 
