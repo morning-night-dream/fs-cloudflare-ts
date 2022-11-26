@@ -1,19 +1,20 @@
+export type SlackEventType = "url_verification" | "event_callback";
+
 export type SlackEvent = {
 	token: string;
 	challenge: string;
 	type: SlackEventType;
+	event: Event;
 };
 
-export type SlackEventType = "url_verification" | "";
+export type EventType = "message";
 
-export const challenge = (event: SlackEvent) => {
-	const init = {
-		headers: {
-			"content-type": "text",
-		},
-		body: event.challenge,
-	};
-	return new Response(JSON.stringify(event.challenge));
+export type Event = {
+	type: EventType;
+	subtype: string;
+	text: string;
+	user: string;
+	ts: number;
 };
 
 // export const verify = (header: string, body: string, secret: string) => {}
