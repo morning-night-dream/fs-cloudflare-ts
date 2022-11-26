@@ -19,6 +19,12 @@ export type Event = {
 	ts: number;
 };
 
+export const verify = (token1: string, token2: string) => {
+	if (token1 !== token2) {
+		throw new Error("token mismatch");
+	}
+};
+
 export const callback = (event: SlackEvent) => {
 	console.log(event.type);
 	const pattern = /http(.*):\/\/([a-zA-Z0-9/\-\_\.]*)/;

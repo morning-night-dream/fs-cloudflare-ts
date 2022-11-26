@@ -1,4 +1,4 @@
-import { callback, SlackEvent } from "./slack";
+import { callback, SlackEvent, verify } from "./slack";
 
 export type Env = {
 	API_KEY: string;
@@ -16,6 +16,8 @@ export default {
 		const event: SlackEvent = JSON.parse(JSON.stringify(req));
 
 		console.log(`received event type: ${event.type}, sub type: ${event.event.subtype}`);
+
+		verify(event.token, env.VERIFICATION_TOKEN);
 
 		if (event.type === "url_verification") {
 			return new Response(JSON.stringify(event.challenge));
