@@ -1,3 +1,4 @@
 name = "fs-cloudflare-ts"
 main = "src/index.ts"
 compatibility_date = "2022-11-23"
+node_compat = true
