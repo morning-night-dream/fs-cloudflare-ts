@@ -21,6 +21,9 @@ export default {
 
 		if (event.type === "event_callback") {
 			console.log(event.type);
+			const pattern = /^https?:\/\/[\w/:%#\$&\?\(\)~\.=\+\-]+$/
+			const url = event.event.text.match(pattern);
+			console.log(url);
 		}
 
 		return new Response(JSON.stringify(""));
